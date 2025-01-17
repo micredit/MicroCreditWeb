@@ -64,4 +64,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             behavior: 'smooth'
         });
     });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+    });
+
+    // 点击导航链接后关闭菜单
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // 点击页面其他地方关闭菜单
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-content')) {
+            navLinks.classList.remove('active');
+        }
+    });
 }); 

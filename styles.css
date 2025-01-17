@@ -56,6 +56,11 @@ body {
     display: flex;
     gap: 2rem;
     list-style: none;
+    background: var(--background-dark);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.5),
+        0 0 15px rgba(99, 102, 241, 0.2);
 }
 
 .nav-links a {
@@ -65,7 +70,9 @@ body {
 }
 
 .nav-links a:hover {
+    background: rgba(99, 102, 241, 0.3);
     color: var(--primary-color);
+    border-left-color: var(--primary-color);
 }
 
 /* Hero Section Styles */
@@ -76,6 +83,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    padding-top: 5rem;
 }
 
 #particles-js {
@@ -91,6 +99,7 @@ body {
     max-width: 800px;
     position: relative;
     z-index: 1;
+    padding-top: 3rem;
 }
 
 .hero h1 {
@@ -688,4 +697,125 @@ body {
     width: 100%;
     height: 100%;
     color: var(--primary-color); /* 保持SVG的颜色变量 */
+}
+
+/* 移动端菜单按钮 */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* 修改响应式导航样式 */
+@media (max-width: 768px) {
+    .nav-content {
+        position: relative;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        /* 使用纯色深色背景 */
+        background: #0a0f1f; /* 比 --background-dark 稍深的颜色 */
+        backdrop-filter: none; /* 移除模糊效果 */
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        padding: 0.5rem 0; /* 减小内边距 */
+        margin-top: 0.5rem;
+        border-radius: 0.5rem;
+        /* 增强边框可见度 */
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        /* 增强阴影效果 */
+        box-shadow: 
+            0 4px 20px rgba(0, 0, 0, 0.3),
+            0 0 15px rgba(99, 102, 241, 0.2);
+        transform-origin: top;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        padding: 0; /* 移除内边距 */
+        margin: 0; /* 移除外边距 */
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 0.6rem 1rem; /* 减小内边距 */
+        color: var(--text-light);
+        font-weight: 500;
+        font-size: 0.95rem; /* 稍微减小字体大小 */
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent; /* 添加左侧边框指示器 */
+    }
+
+    .nav-links a:hover {
+        background: #151c35; /* 稍微亮一点的深色 */
+        color: var(--primary-color);
+        border-left-color: var(--primary-color); /* 悬停时显示边框指示器 */
+    }
+
+    /* 为第一个和最后一个菜单项添加圆角 */
+    .nav-links li:first-child a {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+    }
+
+    .nav-links li:last-child a {
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+
+    /* 分隔线颜色也调整得更明显一些 */
+    .nav-links li:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* 调整移动端字体大小 */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .primary-btn, .secondary-btn {
+        width: 100%;
+        text-align: center;
+    }
+} 
+
+/* 可以添加一个微妙的分隔线 */
+.nav-links li:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 } 
